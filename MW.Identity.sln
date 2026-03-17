@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.Identity.Token", "MW.Identity.Token\MW.Identity.Token.csproj", "{C7FE771F-832D-4A4E-96FD-B6A23FF4F911}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7FE771F-832D-4A4E-96FD-B6A23FF4F911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FE771F-832D-4A4E-96FD-B6A23FF4F911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FE771F-832D-4A4E-96FD-B6A23FF4F911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FE771F-832D-4A4E-96FD-B6A23FF4F911}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
