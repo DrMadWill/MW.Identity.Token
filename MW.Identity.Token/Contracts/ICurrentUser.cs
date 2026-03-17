@@ -1,3 +1,5 @@
+using System.Security.Claims;
+
 namespace MW.Identity.Token.Contracts;
 
 /// <summary>
@@ -10,6 +12,12 @@ public interface ICurrentUser
     /// Gets a value indicating whether the current user is authenticated.
     /// </summary>
     bool IsAuthenticated { get; }
+
+    /// <summary>
+    /// Gets the claims principal from the current HTTP context, or null if not authenticated.
+    /// Allows direct access to claims for advanced scenarios.
+    /// </summary>
+    ClaimsPrincipal? ClaimsPrincipal { get; }
 
     /// <summary>
     /// Gets the current user's unique identifier, or null if not authenticated.
