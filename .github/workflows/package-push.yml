@@ -1,0 +1,45 @@
+name: Smart Package Publisher
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'MW.Identity.Token/**'
+
+jobs:
+  publish-Contacts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore MW.Identity.Token/MW.Identity.Token.csproj --nologo
+
+      - name: Build (Release)
+        run: dotnet build MW.Identity.Token/MW.Identity.Token.csproj -c Release --no-restore --nologo
+
+      - name: Pack (.nupkg + .snupkg)
+        run: >
+          dotnet pack MW.Identity.Token/MW.Identity.Token.csproj
+          -c Release
+          -o ./nupkgs
+          /p:ContinuousIntegrationBuild=true
+          /p:IncludeSymbols=true
+          /p:SymbolPackageFormat=snupkg
+          --no-build
+          --nologo
+
+      - name: Publish to NuGet.org
+        run: |
+          dotnet nuget push "./nupkgs/*.nupkg"  --api-key "${{ secrets.NUGET_TOKEN }}" --source "https://api.nuget.org/v3/index.json" --skip-duplicate --no-symbols
+          dotnet nuget push "./nupkgs/*.snupkg" --api-key "${{ secrets.NUGET_TOKEN }}" --source "https://api.nuget.org/v3/index.json" --skip-duplicate
+
